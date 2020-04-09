@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
+// import { useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -9,6 +10,8 @@ import Profile from './screens/Profile';
 
 import Signin from './screens/Signin';
 import Signup from './screens/Signup';
+import { useTypedSelector } from './reducers';
+// import { signin, signout } from './modules/auth/duck';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -22,7 +25,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 type signedInType = boolean | null;
 
-function getScreens(isSignedin: signedInType) {
+function getScreens(isSignedin: signedInType, isSigningOut: boolean) {
   return isSignedin ? (
     <>
       <Stack.Screen
@@ -35,37 +38,29 @@ function getScreens(isSignedin: signedInType) {
     </>
   ) : (
     <>
-      <Stack.Screen name="Signin" component={Signin} />
+      <Stack.Screen
+        name="Signin"
+        component={Signin}
+        options={{
+          animationTypeForReplace: isSigningOut ? 'pop' : 'push'
+        }}
+      />
       <Stack.Screen name="Signup" component={Signup} />
     </>
   );
 }
 
 const Navigator: React.FC = () => {
-  const [isSignedIn, setSignedIn] = useState<signedInType>(null);
+  const { isSignedin, isSigningOut } = useTypedSelector((state) => state.auth);
 
-  useEffect(() => {
-    async function retrieveToken() {
-      try {
-        setTimeout(() => {
-          setSignedIn(true);
-        }, 4000);
-      } catch (err) {
-        setSignedIn(false);
-      }
-    }
-
-    retrieveToken();
-  }, [isSignedIn]);
-
-  if (isSignedIn === null) {
+  if (isSignedin === null) {
     return <ActivityIndicator />;
   }
 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        {getScreens(isSignedIn)}
+        {getScreens(isSignedin, isSigningOut)}
       </Stack.Navigator>
     </NavigationContainer>
   );
