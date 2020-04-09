@@ -6,7 +6,7 @@ import {
   AuthModuleAction,
   ASYNC_STORAGE_KEYS
 } from './types';
-import { Dispatch } from '../../commons/types';
+import { Dispatch } from '~/commons/types';
 
 const AUTH_KEYS: ASYNC_STORAGE_KEYS = {
   TOKEN: ''

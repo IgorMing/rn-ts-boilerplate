@@ -5,7 +5,7 @@
 - [x] add and configure react navigation
 - [x] add a simple authentication flow
 - [x] persist authentication data
-- [ ] configure absolut import
+- [x] configure absolut import
 - [ ] add a bottom navigator for the authenticated screens
 - [x] install and configure redux
 - [x] add redux thunk

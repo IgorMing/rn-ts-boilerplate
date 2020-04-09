@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, SafeAreaView, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { signin } from '../../modules/auth/duck';
+import { signin } from '~/modules/auth/duck';
 
 const Signin: React.FC = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, SafeAreaView, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { signout } from '../../modules/auth/duck';
+import { signout } from '~/modules/auth/duck';
 import { HomeProps } from './types';
 
 const Home: React.FC<HomeProps> = ({ navigation }) => {

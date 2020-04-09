@@ -13,7 +13,6 @@ import Signup from './screens/Signup';
 import { useTypedSelector } from './reducers';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './modules/auth/duck';
-// import { signin, signout } from './modules/auth/duck';
 
 export type RootStackParamList = {
   Home: undefined;
