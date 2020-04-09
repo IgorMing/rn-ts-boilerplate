@@ -6,7 +6,7 @@
 - [x] add a simple authentication flow
 - [x] persist authentication data
 - [x] configure absolut import
-- [ ] add a bottom navigator for the authenticated screens
+- [x] add a bottom navigator for the authenticated screens
 - [x] install and configure redux
 - [x] add redux thunk
 - [x] move the authentication logic to redux
