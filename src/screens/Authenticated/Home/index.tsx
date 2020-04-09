@@ -1,15 +1,16 @@
 import React from 'react';
-import { Text, SafeAreaView, Button } from 'react-native';
+import { Text, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { signout } from '~/modules/auth/duck';
 import { HomeProps } from './types';
+import { Container } from './styles';
 
 const Home: React.FC<HomeProps> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   return (
-    <SafeAreaView>
+    <Container>
       <Text>Home Screen</Text>
       <Button
         onPress={() => navigation.navigate('Details', { id: 'abc-123' })}
@@ -21,7 +22,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
         }}
         title="Sign off"
       />
-    </SafeAreaView>
+    </Container>
   );
 };
 

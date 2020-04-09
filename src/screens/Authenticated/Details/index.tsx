@@ -3,7 +3,7 @@ import { Text, SafeAreaView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
-import { RootStackParamList } from 'src/navigator';
+import { RootStackParamList } from '~/root-navigator';
 
 interface DetailsProps {
   navigation: StackNavigationProp<RootStackParamList, 'Details'>;
