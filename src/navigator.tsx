@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -19,7 +20,9 @@ export type RootStackParamList = {
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-function getScreens(isSignedin: boolean = true) {
+type signedInType = boolean | null;
+
+function getScreens(isSignedin: signedInType) {
   return isSignedin ? (
     <>
       <Stack.Screen
@@ -39,9 +42,31 @@ function getScreens(isSignedin: boolean = true) {
 }
 
 const Navigator: React.FC = () => {
+  const [isSignedIn, setSignedIn] = useState<signedInType>(null);
+
+  useEffect(() => {
+    async function retrieveToken() {
+      try {
+        setTimeout(() => {
+          setSignedIn(true);
+        }, 4000);
+      } catch (err) {
+        setSignedIn(false);
+      }
+    }
+
+    retrieveToken();
+  }, [isSignedIn]);
+
+  if (isSignedIn === null) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">{getScreens()}</Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
+        {getScreens(isSignedIn)}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

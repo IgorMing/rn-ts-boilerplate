@@ -15,6 +15,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
         onPress={() => navigation.navigate('Details', { id: 'abc-123' })}
         title="Go to Details"
       />
+      <Button onPress={() => {}} title="Sign off" />
     </SafeAreaView>
   );
 };
