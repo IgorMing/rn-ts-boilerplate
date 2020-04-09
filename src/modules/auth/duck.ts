@@ -1,7 +1,19 @@
-import { Actions, AuthModuleState, AuthModuleAction } from './types';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import {
+  Actions,
+  AuthModuleState,
+  AuthModuleAction,
+  ASYNC_STORAGE_KEYS
+} from './types';
+import { Dispatch } from '../../commons/types';
+
+const AUTH_KEYS: ASYNC_STORAGE_KEYS = {
+  TOKEN: ''
+};
 
 const INITIAL_STATE: AuthModuleState = {
-  isSignedin: false,
+  isSignedin: null,
   isSigningOut: false
 };
 
@@ -30,13 +42,28 @@ export default function reducer(
 
 // Action Creators
 export function signin() {
-  return {
-    type: Actions.SIGNIN
+  return async (dispatch: Dispatch) => {
+    await AsyncStorage.setItem(AUTH_KEYS.TOKEN, '__MOCKED_TOKEN__');
+    dispatch({
+      type: Actions.SIGNIN
+    });
   };
 }
 
 export function signout() {
-  return {
-    type: Actions.SIGNOUT
+  return async (dispatch: Dispatch) => {
+    await AsyncStorage.clear();
+    dispatch({
+      type: Actions.SIGNOUT
+    });
+  };
+}
+
+export function checkAuth() {
+  return async (dispatch: Dispatch) => {
+    const token = await AsyncStorage.getItem(AUTH_KEYS.TOKEN);
+    setTimeout(() => {
+      dispatch(token ? signin() : signout());
+    }, 3000);
   };
 }

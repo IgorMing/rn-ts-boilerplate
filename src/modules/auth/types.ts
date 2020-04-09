@@ -13,3 +13,7 @@ type ActionTypes = typeof Actions.SIGNIN | typeof Actions.SIGNOUT;
 export interface AuthModuleAction {
   type: ActionTypes;
 }
+
+export interface ASYNC_STORAGE_KEYS {
+  TOKEN: string;
+}

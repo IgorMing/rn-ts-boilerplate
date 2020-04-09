@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 // import { useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,6 +11,8 @@ import Profile from './screens/Profile';
 import Signin from './screens/Signin';
 import Signup from './screens/Signup';
 import { useTypedSelector } from './reducers';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from './modules/auth/duck';
 // import { signin, signout } from './modules/auth/duck';
 
 export type RootStackParamList = {
@@ -51,10 +53,19 @@ function getScreens(isSignedin: signedInType, isSigningOut: boolean) {
 }
 
 const Navigator: React.FC = () => {
+  const dispatch = useDispatch();
   const { isSignedin, isSigningOut } = useTypedSelector((state) => state.auth);
 
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
   if (isSignedin === null) {
-    return <ActivityIndicator />;
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   return (
