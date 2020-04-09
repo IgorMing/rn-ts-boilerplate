@@ -1,11 +1,22 @@
 import React from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import { Text, Button } from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import { signout } from '~/modules/auth/duck';
+import { Container } from './styles';
 
 const Profile: React.FC = () => {
+  const dispatch = useDispatch();
   return (
-    <SafeAreaView>
+    <Container>
       <Text>Profile Screen</Text>
-    </SafeAreaView>
+      <Button
+        onPress={() => {
+          dispatch(signout());
+        }}
+        title="Sign off"
+      />
+    </Container>
   );
 };
 

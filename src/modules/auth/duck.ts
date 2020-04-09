@@ -64,6 +64,6 @@ export function checkAuth() {
     const token = await AsyncStorage.getItem(AUTH_KEYS.TOKEN);
     setTimeout(() => {
       dispatch(token ? signin() : signout());
-    }, 3000);
+    }, 1500);
   };
 }

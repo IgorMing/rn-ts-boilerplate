@@ -1,13 +1,14 @@
 import React from 'react';
-import { Text, SafeAreaView, Button } from 'react-native';
+import { Text, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { signin } from '~/modules/auth/duck';
+import { Container } from './styles';
 
 const Signin: React.FC = () => {
   const dispatch = useDispatch();
   return (
-    <SafeAreaView>
+    <Container>
       <Text>Sign in Screen</Text>
       <Button
         onPress={() => {
@@ -15,7 +16,7 @@ const Signin: React.FC = () => {
         }}
         title="Sign in"
       />
-    </SafeAreaView>
+    </Container>
   );
 };
 
