@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 
-import Navigator from './navigator';
+import Navigator from './root-navigator';
 import store from './store';
 import theme from './commons/styled-components/theme';
 
