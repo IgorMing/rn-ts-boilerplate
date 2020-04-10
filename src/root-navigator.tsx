@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import AuthTabNavigator from './screens/Authenticated/bottom-tab-navigator';
@@ -8,6 +7,7 @@ import { useTypedSelector } from './reducers';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './modules/auth/duck';
 import NotAuthenticatedStackNavigator from './screens/NotAuthenticated/stack-navigator';
+import { Spinner } from './components';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -26,11 +26,7 @@ const Navigator: React.FC = () => {
   }, [dispatch]);
 
   if (isSignedin === null) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator />
-      </View>
-    );
+    return <Spinner />;
   }
 
   return (
