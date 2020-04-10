@@ -12,7 +12,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <StatusBar barStyle="light-content" backgroundColor="black" />
+        <StatusBar
+          barStyle={theme.statusBar?.content}
+          backgroundColor={theme.statusBar?.background}
+        />
         <Navigator />
       </ThemeProvider>
     </Provider>

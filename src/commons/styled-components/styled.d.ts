@@ -2,8 +2,12 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    statusBar?: {
+      background?: string;
+      content?: 'default' | 'light-content' | 'dark-content';
+    };
     measures: {
-      horizontalDistance: number;
+      horizontalDistance: string;
     };
     colors: {
       background: string;
